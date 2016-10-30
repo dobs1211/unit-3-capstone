@@ -34,12 +34,12 @@ class TaskList extends Component {
           )}
         </ul>
       </div>
-    )
+    );
   }
 }
 
 function select(state) {
   return {};
-};
+}
 
 export default connect(select)(TaskList);
