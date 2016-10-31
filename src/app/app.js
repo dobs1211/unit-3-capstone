@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { receiveTasks, completeTask } from './actions';
+import { fetchTasks, completeTask } from './actions';
 import TaskList from './taskList';
 import Navigation from './nav';
 
@@ -14,7 +14,7 @@ class App extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
 
-    dispatch(receiveTasks());
+    dispatch(fetchTasks());
   }
 
   handleCompleteTask(task) {

@@ -21,8 +21,10 @@ function rootReducer(state = initialState, action) {
     default:
       return state;
   }
+
   return state;
 }
+
 function addTaskReducer(state, action) {
   var task = action.payload;
   task.completed = false;

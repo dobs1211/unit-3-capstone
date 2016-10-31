@@ -26,7 +26,7 @@ export function fetchTasks() {
       return function() { };
     }
 
-    return fetch('https://habitica.com:443/api/v2/user/tasks', {
+    return fetch('https://habitica.com:443/api/v3/tasks/user', {
       headers: {
         'X-API-User': state.authentication.uuId,
         'X-API-Key': state.authentication.apiToken
