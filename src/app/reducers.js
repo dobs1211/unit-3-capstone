@@ -28,9 +28,10 @@ function rootReducer(state = initialState, action) {
 function addTaskReducer(state, action) {
   var task = action.payload;
   task.completed = false;
-
-  var lastTask = state.tasks[state.tasks.length - 1];
-
+  console.log({task});
+  var lastTask = state.tasks[state.tasks.length - 1] || task; // state.tasks[0] => Undefined
+  console.log({lastTask});
+  console.log({state});
   task.id = lastTask.id++;
 
   return Object.assign({}, state, { tasks: [...state.tasks, task] });

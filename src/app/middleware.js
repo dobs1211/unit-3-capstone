@@ -1,6 +1,6 @@
 import { LOGIN, LOGOUT } from './actions';
 
-export function authenticationMiddleware() {
+export function authenticationMiddleware({ getState }) {
   return next => action => {
     next(action);
 

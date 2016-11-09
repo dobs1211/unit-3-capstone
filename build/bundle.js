@@ -29511,7 +29511,9 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function authenticationMiddleware() {
+	function authenticationMiddleware(_ref) {
+	  var getState = _ref.getState;
+
 	  return function (next) {
 	    return function (action) {
 	      next(action);
@@ -29579,7 +29581,7 @@
 	var LOGOUT = exports.LOGOUT = 'LOGOUT';
 
 	function getAuth() {
-	  var authentication = JSON.parse(localStorage.getItem('authentication')) || { apiToken: 'd5c6bd53-3173-4336-a5cc-bf63ebdbd3af', uuId: 'e6922c82-1068-412a-a6d0-47d6b124f60b' };
+	  var authentication = JSON.parse(localStorage.getItem('authentication')) || { apiToken: '', uuId: '' };
 
 	  return {
 	    type: LOGIN,
@@ -29596,7 +29598,7 @@
 	      return function () {};
 	    }
 
-	    return (0, _isomorphicFetch2.default)('https://habitica.com:443/api/v3/tasks/user', {
+	    return (0, _isomorphicFetch2.default)('https://habitica.com:443/api/v2/user/tasks', {
 	      headers: {
 	        'X-API-User': state.authentication.uuId,
 	        'X-API-Key': state.authentication.apiToken
@@ -31843,7 +31845,6 @@
 	      var dispatch = _props.dispatch;
 	      var type = _props.type;
 
-
 	      dispatch((0, _actions.addTask)(taskText, type));
 	    }
 	  }, {
@@ -32094,9 +32095,10 @@
 	function addTaskReducer(state, action) {
 	  var task = action.payload;
 	  task.completed = false;
-
-	  var lastTask = state.tasks[state.tasks.length - 1];
-
+	  console.log({ task: task });
+	  var lastTask = state.tasks[state.tasks.length - 1] || task; // state.tasks[0] => Undefined
+	  console.log({ lastTask: lastTask });
+	  console.log({ state: state });
 	  task.id = lastTask.id++;
 
 	  return (0, _assign2.default)({}, state, { tasks: [].concat((0, _toConsumableArray3.default)(state.tasks), [task]) });

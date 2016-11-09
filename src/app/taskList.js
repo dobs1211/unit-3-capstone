@@ -10,7 +10,6 @@ class TaskList extends Component {
 
   addTask(taskText) {
     const { dispatch, type } = this.props;
-
     dispatch(addTask(taskText, type));
   }
 
